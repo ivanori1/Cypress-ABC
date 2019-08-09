@@ -26,3 +26,11 @@ Cypress.Commands.add('assertNavSelected', (navigation) => {
 
 
 })
+
+Cypress.Commands.add('checkNavBarMain', () => {
+    cy.get('nav').within(() => {
+        cy.get('button[aria-controls="navbarMain"]')
+        .click()
+        .should('not.have.class', 'collapsed')
+    })
+})

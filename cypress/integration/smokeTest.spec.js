@@ -10,5 +10,8 @@ describe('smokeTest', () => {
     it('Assert Length of nav buttons is 5 and DesignForslag is selected', () => {
       cy.assertDesignForslagSelected();
     })
+    it ('Check navigation button hamburger and their dropdown select', ()=> {
+      cy.checkNavBarMain();
+    })
   })
 })
