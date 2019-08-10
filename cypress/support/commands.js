@@ -39,7 +39,10 @@ Cypress.Commands.add('assertDesignForslagSelected', () => {
 
 })
 
-
+/*
+Command take variable navigation that is saved as constant
+in spec.js file click on that and asert drop-menu is visible
+*/
 Cypress.Commands.add('assertNavSelected', (navigation) => {
     cy.get('#hatConfigurator > ul > li > div')
         .contains(navigation)
@@ -47,7 +50,9 @@ Cypress.Commands.add('assertNavSelected', (navigation) => {
     cy.get('ul[class="nav nav-tabs nav-tabs-secondary nav-tabs-theme"]')
         .should('be.visible')
 })
+/*
 
+*/
 Cypress.Commands.add('checkNavBarMain', () => {
     cy.get('nav').within(() => {
         cy.get('button[aria-controls="navbarMain"]')
