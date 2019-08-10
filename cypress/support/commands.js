@@ -36,6 +36,9 @@ Cypress.Commands.add('assertDesignForslagSelected', () => {
     cy.get('#hatConfigurator > ul > li:first')
         .should('have.class', 'active')
         .should('contain', 'Designförslag')
+    // Please tell developers not to call this data-name undefined 
+    cy.get('[data-name="undefined"]')
+    .should('be.visible')
 
 })
 
@@ -51,7 +54,9 @@ Cypress.Commands.add('assertNavSelected', (navigation) => {
         .should('be.visible')
 })
 /*
-
+Command check navigation bar menu (hamburger icon) and click on it
+P.S not sure why developers set class colapsed when menu is not colapssed
+After clicking it assert thet list in hamburger menu have 3 items
 */
 Cypress.Commands.add('checkNavBarMain', () => {
     cy.get('nav').within(() => {
@@ -65,44 +70,63 @@ Cypress.Commands.add('checkNavBarMain', () => {
     })
 })
 
-Cypress.Commands.add('clickSaveBtn', () => {
-    cy.get('[title="Spara din design"]')
-        .click()
-    cy.get('.modal-content')
-        .should('be.visible')
-})
+/*
+His comand click on Save design button whitin navigation bar
+Then check is Save design pop-up visible
+*/
+Cypress.Commands.add('clickSaveDesignBtn', () => {
+    cy.get('nav').within(() => {
 
+        cy.get('[title="Spara din design"]')
+        .click()
+    })
+    cy.get('.modal-content')
+    .should('be.visible')
+})
+/*
+This command test email input and error message in it
+1 test case: empty text input
+2 test case wrong email format
+*/
 Cypress.Commands.add('saveDesignNegative', () => {
     cy.get('.modal-content .btn-primary')
         .click()
     cy.get('.invalid-feedback').should('contain', 'Fältet E-post har inte ifyllts.')
     cy.get('[name="email"]')
-        .type('123')
+        .type('1')
         .should('have.class', 'is-invalid')
     cy.get('.invalid-feedback').should('contain', 'E-post har fel format.')
 
 })
 
-Cypress.Commands.add('saveDesignPositive', () => {
+/*
+Command gives email variable from spec.js file and click on save btn
+*/
+Cypress.Commands.add('saveDesignPositive', (email) => {
     cy.get('[name="email"]')
-        .type('abc@abc.abc')
+    .type('{backspace}')
+        .type(email)
     cy.get('.modal-content .btn-primary')
         .click()
     cy.get('.modal-content .btn-secondary')
         .click()
 })
-
-Cypress.Commands.add('designHat', () => {
+/*
+This command is creating simple hat
+clicking on [Create] button
+typing text on front of hat
+*/
+Cypress.Commands.add('designHat', (left, right) => {
     cy.get('[data-name="undefined"] .btn-primary')
         .click()
     cy.get('[data-name="frontEmbroidery"] h3')
         .should('contain', 'Brodyr framsida')
     cy.get('[class="form-control input-left"]')
         .type('Srbija')
-        .should('have.value', 'Srbija')
+        .should('have.value', left)
     cy.get('[class="form-control input-right"]')
-        .type('Do Tokija')
-        .should('have.value', 'Do Tokija')
+        .type(right)
+        .should('have.value', right)
 })
 
 Cypress.Commands.add('checkOut', () => {
@@ -139,9 +163,9 @@ Cypress.Commands.add('selectSize', () => {
         .click()
 
 })
-
-Cypress.Commands.add('completeOrderNegative', () => {
+Cypress.Commands.add('completeOrderNegative', (email) => {
     cy.get('.btn-primary')
         .click()
     cy.get('.is-invalid').should('have.length', 9)
+   cy.get('[type="email"]').should('have.value', email)
 })

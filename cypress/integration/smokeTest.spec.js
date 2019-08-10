@@ -4,16 +4,19 @@
  */
 
 describe('smokeTest', () => {
+  // Navigation buttons
+  const navFramsidan = "Framsidan"
+  const navBaksidan = "Baksidan"
+  const navInsidan = "Insidan"
+  const navOvansidan = "Ovansidan"
+  const email = "123@abc.gruppen"
+  const leftInput = "Srbija"
+  const rightInput = "Do Tokija"
   before(() => {
     // it is only '/' caled to visit because default url is set in cypres.json
     cy.visit('/')
   })
   context('Design Page', () => {
-    // Navigation buttons
-    const navFramsidan = "Framsidan"
-    const navBaksidan = "Baksidan"
-    const navInsidan = "Insidan"
-    const navOvansidan = "Ovansidan"
 
 
     it('Assert Configurator with navigation, viewpoint, 3D hat and container-nav is loaded', () => {
@@ -32,21 +35,21 @@ describe('smokeTest', () => {
       cy.assertNavSelected(navOvansidan)
     })
     it('Save Design ID to mail', () => {
-      cy.clickSaveBtn();
+      cy.clickSaveDesignBtn();
       cy.saveDesignNegative();
-      cy.saveDesignPositive();
+      cy.saveDesignPositive(email);
     })
   })
 
   context('Checkout page', () => {
-    
+
     it('Design and Checkout', () => {
-      cy.designHat();
+      cy.designHat(leftInput, rightInput);
       cy.checkOut()
     })
     it('Select First Available Size of hat', () => {
       cy.selectSize();
-      cy.completeOrderNegative();
+      cy.completeOrderNegative(email);
     })
   })
 
