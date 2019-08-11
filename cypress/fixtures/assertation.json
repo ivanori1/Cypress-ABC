@@ -1,0 +1,6 @@
+{
+    "inputAssert": {
+        "emailEmpty": "Fältet E-post har inte ifyllts.",
+        "emailWrongFormat": ""
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "wholePageConfigurator": "[data-name='configurator']",
+    "hatConfigurator": "#hatConfigurator",
+    "hatConfiguratorNavButtonsList" : "#hatConfigurator [class='nav nav-tabs nav-tabs-theme']",
+    "hatConfiguratorViewPort": ".viewport",
+    "footerPanelNavigation": "[class='nav-panel mb-3']",
+    "hat3Danimation": ".hat3D",
+    "popUp": ".modal-content",
+    "popUpConfirmButton": ".modal-content .btn-primary",
+    "popUpCancelButton": ".modal-content .btn-secondary",
+
+
+    "hatConfiguratorNavButtonsEach": "#hatConfigurator > .nav > li",
+    "hatConfiguratorNavButtonTitle": "#hatConfigurator > ul > li > div",
+    "hubConfiguratorNavButtonDropDown": "ul[class='nav nav-tabs nav-tabs-secondary nav-tabs-theme']",
+    "hamburgerNavButton": "button[aria-controls='navbarMain']",
+    "hamburgerDropdown": "ul[id='navbarMain']",
+    "hamburgerDropdownList": "#navbarMain li",
+
+    "saveDesignNavButton": "[title='Spara din design']",
+    "inputError": ".invalid-feedback",
+    "inputMail": "[name='email']"
+}
